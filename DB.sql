@@ -1,8 +1,8 @@
-CREATE DATABASE InventorySystem;
+-- CREATE DATABASE InventorySystem;
 /* NOTE THAT:- no relation was written in the SQL Code until the testing phase passes */
 /* users table which will be modified in later versions to include more information */
 CREATE TABLE users (
-  id INT NOT NULL AUTO_INCREMENT,
+  id INT NOT NULL,
   name VARCHAR(128) NOT NULL,
   username VARCHAR(64) NOT NULL UNIQUE,
   /* not using the password word as in some DB they might get confilicted with what password keywords */
@@ -17,7 +17,7 @@ CREATE TABLE users (
 
 /* user type (Admin, sales, hr, etc)*/
 CREATE TABLE user_types (
-  id INT NOT NULL AUTO_INCREMENT,
+  id INT NOT NULL,
   name VARCHAR(64) NOT NULL UNIQUE,
   created TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
   created_by INT NOT NULL DEFAULT 0,
@@ -30,7 +30,7 @@ CREATE TABLE user_types (
 CREATE TABLE user_type_permissions (
   user_type_id INT NOT NULL,
   permission_name VARCHAR(64) NOT NULL,
-  permission_value Bool NOT NULL DEFAULT FALSE,
+  permission_value INT NOT NULL DEFAULT 0,
   created TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
   created_by INT NOT NULL DEFAULT 0,
   modified TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
@@ -40,7 +40,7 @@ CREATE TABLE user_type_permissions (
 
 /* category for the inventrory and items */
 CREATE TABLE item_category (
-  id INT NOT NULL AUTO_INCREMENT,
+  id INT NOT NULL,
   name VARCHAR(64) NOT NULL UNIQUE,
   created TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
   created_by INT NOT NULL DEFAULT 0,
@@ -51,7 +51,7 @@ CREATE TABLE item_category (
 
 /* items in the inventory itself */
 CREATE TABLE items (
-  id INT NOT NULL AUTO_INCREMENT,
+  id INT NOT NULL,
   name VARCHAR(64) NOT NULL UNIQUE,
   /* rethink about this one */
   quantity INT NOT NULL DEFAULT 0,
